@@ -1,14 +1,20 @@
 package com.wagawin.family.model.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="child_type",
+        discriminatorType = DiscriminatorType.INTEGER)
 public class Child {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="child_type", insertable=false, updatable=false)
+    private Integer type;
 
 
     @Column
@@ -18,12 +24,12 @@ public class Child {
     private Integer age;
 
     @ManyToOne
-    @JoinColumn(name="person_id", nullable=false)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
 
-    @OneToMany(mappedBy="child")
-    private Set<Meal> meals;
+    @OneToMany(mappedBy = "child")
+    private List<Meal> meals;
 
 
     public Long getId() {
@@ -58,25 +64,34 @@ public class Child {
         this.person = person;
     }
 
-    public Set<Meal> getMeals() {
+    public List<Meal> getMeals() {
         return meals;
     }
 
-    public void setMeals(Set<Meal> meals) {
+    public void setMeals(List<Meal> meals) {
         this.meals = meals;
+    }
+
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
         return "Child{" +
                 "id=" + id +
+                ", type=" + type +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", person=" + person +
                 ", meals=" + meals +
                 '}';
     }
-
 
 
 }

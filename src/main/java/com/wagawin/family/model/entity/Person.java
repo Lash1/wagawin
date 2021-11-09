@@ -16,7 +16,7 @@ public class Person {
     @Column
     private Integer age;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
     private Set<Child> children;
 
     @OneToOne(cascade = CascadeType.ALL)
