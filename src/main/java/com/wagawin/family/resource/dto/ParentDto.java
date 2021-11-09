@@ -9,11 +9,11 @@ public class ParentDto {
     private HouseDto house;
 
 
-    public static ParentDto fromPerson(Person person){
-        if(person == null){
+    public static ParentDto fromPerson(Person person) {
+        if (person == null) {
             return new ParentDto();
         }
-        ParentDto parentDto= new ParentDto();
+        ParentDto parentDto = new ParentDto();
         parentDto.setAge(person.getAge());
         parentDto.setHouse(HouseDto.fromHouse(person.getHouse()));
         parentDto.setName(person.getName());

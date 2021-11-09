@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("1")
-public class Daughter extends Child{
+public class Daughter extends Child {
 
     private String hairColor;
 

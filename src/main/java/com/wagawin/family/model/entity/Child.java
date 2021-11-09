@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="child_type",
+@DiscriminatorColumn(name = "child_type",
         discriminatorType = DiscriminatorType.INTEGER)
 public class Child {
 
@@ -13,7 +13,7 @@ public class Child {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="child_type", insertable=false, updatable=false)
+    @Column(name = "child_type", insertable = false, updatable = false)
     private Integer type;
 
 

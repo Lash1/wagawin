@@ -20,7 +20,7 @@ public class House {
 
     private HouseType type;
 
-    @OneToOne(mappedBy = "house")
+    @OneToOne(mappedBy = "house", fetch = FetchType.LAZY)
     private Person person;
 
     public Long getId() {
@@ -53,6 +53,14 @@ public class House {
 
     public void setType(HouseType type) {
         this.type = type;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override

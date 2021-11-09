@@ -10,6 +10,15 @@ public class HouseDto {
     private HouseType type;
 
 
+    public HouseDto(String address, String zipCode, HouseType type) {
+        this.address = address;
+        this.zipCode = zipCode;
+        this.type = type;
+    }
+
+    public HouseDto() {
+    }
+
     public static HouseDto fromHouse(House house) {
         if (house == null) {
             return new HouseDto();

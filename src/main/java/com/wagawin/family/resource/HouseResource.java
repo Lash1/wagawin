@@ -16,6 +16,8 @@ public class HouseResource {
 
     private final HouseService houseService;
 
+    //TODO: test api processing time
+
     public HouseResource(HouseService houseService) {
         this.houseService = houseService;
     }

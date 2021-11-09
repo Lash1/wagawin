@@ -5,6 +5,7 @@ import com.wagawin.family.model.entity.ParentSummary;
 import com.wagawin.family.model.repository.ParentSummaryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class ParentsSummaryService {
         this.parentSummaryRepository = parentSummaryRepository;
     }
 
+    @Transactional(readOnly = true)
     public ResponseEntity<int[]> gerPersonsChildren() {
         List<ParentSummary> parentSummaryList = parentSummaryRepository.findAll();
         return ResponseEntity.ok(ParentSummaryHelper.toParentsSummaryArray(parentSummaryList));

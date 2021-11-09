@@ -1,6 +1,5 @@
 package com.wagawin.family.resource;
 
-import com.wagawin.family.model.entity.Child;
 import com.wagawin.family.resource.dto.ChildDto;
 import com.wagawin.family.service.ChildService;
 import javassist.NotFoundException;
@@ -34,12 +33,12 @@ public class ChildResource {
     }
 
     @GetMapping(value = "/color/by-child-name/{childName}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> getChildColorByName(@PathVariable String childName) throws NotFoundException {
+    public ResponseEntity<Map<String, String>> getChildColorByName(@PathVariable String childName) throws NotFoundException {
         return childService.getChildColorByName(childName);
     }
 
     @GetMapping(value = "/color/by-child-id/{childId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> getChildColorById(@PathVariable Long childId) throws NotFoundException {
+    public ResponseEntity<Map<String, String>> getChildColorById(@PathVariable Long childId) throws NotFoundException {
         return childService.getChildColorById(childId);
     }
 }

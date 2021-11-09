@@ -6,10 +6,9 @@ import com.wagawin.family.model.entity.Son;
 import com.wagawin.family.model.repository.ChildRepository;
 import com.wagawin.family.resource.dto.ChildDto;
 import javassist.NotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,6 @@ import java.util.Optional;
 
 @Service
 public class ChildService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ChildService.class);
     private final ChildRepository childRepository;
 
     public ChildService(ChildRepository childRepository) {
@@ -26,6 +24,7 @@ public class ChildService {
 
 
     //TODO: transaction/cache/refactor/test/docker/secuirty
+    @Transactional(readOnly = true)
     public ResponseEntity<ChildDto> getChildInfoByName(String childName) throws NotFoundException {
         Child child = childRepository.findByName(childName);
         if (child == null) {
@@ -34,6 +33,8 @@ public class ChildService {
         return ResponseEntity.ok(ChildDto.fromChild(child));
     }
 
+
+    @Transactional(readOnly = true)
     public ResponseEntity<Map<String, String>> getChildColorByName(String childName) throws NotFoundException {
         Child child = childRepository.findByName(childName);
         if (child == null) {
@@ -42,6 +43,7 @@ public class ChildService {
         return ResponseEntity.ok(getChildColorMap(child));
     }
 
+    @Transactional(readOnly = true)
     public ResponseEntity<ChildDto> getChildInfoById(Long childId) throws NotFoundException {
         Optional<Child> child = childRepository.findById(childId);
         if (child.isEmpty()) {
@@ -50,6 +52,7 @@ public class ChildService {
         return ResponseEntity.ok(ChildDto.fromChild(child.get()));
     }
 
+    @Transactional(readOnly = true)
     public ResponseEntity<Map<String, String>> getChildColorById(Long childId) throws NotFoundException {
         Optional<Child> child = childRepository.findById(childId);
         if (child.isEmpty()) {

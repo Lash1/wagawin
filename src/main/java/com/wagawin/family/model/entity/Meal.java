@@ -18,7 +18,7 @@ public class Meal {
     private Date invented;
 
     @ManyToOne
-    @JoinColumn(name="child_id")
+    @JoinColumn(name = "child_id")
     private Child child;
 
 
