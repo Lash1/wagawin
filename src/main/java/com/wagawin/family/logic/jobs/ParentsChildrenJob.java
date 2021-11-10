@@ -1,4 +1,4 @@
-package com.wagawin.family.jobs;
+package com.wagawin.family.logic.jobs;
 
 import com.wagawin.family.common.helper.ParentSummaryHelper;
 import com.wagawin.family.model.entity.Person;
@@ -33,6 +33,7 @@ public class ParentsChildrenJob {
             ParentSummaryHelper.fillParentsSummaryArray(parentSummary, people);
             //We can directly persist this array in a db table since it's already the required response object from the API, but since the task requirement asks for a ParentSummary
             //data structure I will create it.
+            parentSummaryRepository.deleteAll();
             parentSummaryRepository.saveAll(ParentSummaryHelper.fromParentsSummaryArray(parentSummary));
         }
     }

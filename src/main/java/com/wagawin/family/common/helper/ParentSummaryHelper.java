@@ -26,12 +26,13 @@ public class ParentSummaryHelper {
 
     public static List<ParentSummary> fromParentsSummaryArray(int[] parentSummaryArray) {
         List<ParentSummary> parentSummaryList = new ArrayList<>();
-        for (int i : parentSummaryArray) {
+        for (int i = 0; i < parentSummaryArray.length; i++) {
             ParentSummary parentSummary = new ParentSummary();
-            parentSummary.setAmountOfPersons((long) i);
-            parentSummary.setAmountOfChildren((long) parentSummaryArray[i]);
+            parentSummary.setAmountOfPersons((long) parentSummaryArray[i]);
+            parentSummary.setAmountOfChildren((long) i);
             parentSummaryList.add(parentSummary);
         }
+
         return parentSummaryList;
     }
 
@@ -44,7 +45,7 @@ public class ParentSummaryHelper {
                 .max(Long::compareTo)
                 .orElse(0L));
         int[] parentsSummaryArray = new int[maxNumOfChildren + 1];
-        parentSummaryList.forEach(parentSummary -> parentsSummaryArray[Math.toIntExact(parentSummary.getAmountOfPersons())] = Math.toIntExact(parentSummary.getAmountOfPersons()));
+        parentSummaryList.forEach(parentSummary -> parentsSummaryArray[Math.toIntExact(parentSummary.getAmountOfChildren())] = Math.toIntExact(parentSummary.getAmountOfPersons()));
         return parentsSummaryArray;
     }
 

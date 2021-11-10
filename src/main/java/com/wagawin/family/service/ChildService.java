@@ -26,7 +26,7 @@ public class ChildService {
     //TODO: transaction/cache/refactor/test/docker/secuirty
     @Transactional(readOnly = true)
     public ResponseEntity<ChildDto> getChildInfoByName(String childName) throws NotFoundException {
-        Child child = childRepository.findByName(childName);
+        Child child = childRepository.findFirstByName(childName);
         if (child == null) {
             throw new NotFoundException("No child(s) found with name " + childName);
         }
@@ -36,7 +36,7 @@ public class ChildService {
 
     @Transactional(readOnly = true)
     public ResponseEntity<Map<String, String>> getChildColorByName(String childName) throws NotFoundException {
-        Child child = childRepository.findByName(childName);
+        Child child = childRepository.findFirstByName(childName);
         if (child == null) {
             throw new NotFoundException("No child(s) found with name " + childName);
         }

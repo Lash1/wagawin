@@ -7,12 +7,14 @@ import javax.persistence.Id;
 
 @Entity
 public class ParentSummary {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long amountOfPersons;
+
     private Long amountOfChildren;
+
 
     public Long getId() {
         return id;
@@ -41,8 +43,7 @@ public class ParentSummary {
     @Override
     public String toString() {
         return "ParentSummary{" +
-                "id=" + id +
-                ", amountOfPersons=" + amountOfPersons +
+                "amountOfPersons=" + amountOfPersons +
                 ", amountOfChildren=" + amountOfChildren +
                 '}';
     }
