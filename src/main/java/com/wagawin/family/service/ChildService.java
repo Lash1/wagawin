@@ -23,7 +23,6 @@ public class ChildService {
     }
 
 
-    //TODO: transaction/cache/refactor/test/docker/secuirty
     @Transactional(readOnly = true)
     public ResponseEntity<ChildDto> getChildInfoByName(String childName) throws NotFoundException {
         Child child = childRepository.findFirstByName(childName);
